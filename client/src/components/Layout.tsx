@@ -253,17 +253,14 @@ export default function Layout({ children }: LayoutProps) {
                   <Phone className="w-5 h-5" />
                 </a>
               </div>
-              <p className="text-sm text-muted-foreground">
-                Desenvolvido por{' '}
-                <a 
-                  href={APEZATO_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:text-yellow-500 font-bold transition-colors"
-                >
-                  Apezato Marketing
-                </a>
-              </p>
+              <a 
+                href={APEZATO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 border-2 border-primary text-primary font-bold hover:bg-primary/20 transition-all duration-300 animate-ripple-pulse"
+              >
+                Desenvolvido por Apezato Marketing
+              </a>
             </div>
           </div>
         </div>
