@@ -6,6 +6,7 @@ import React from 'react';
 const WHATSAPP_NUMBER = '5512981728313';
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá! Gostaria de solicitar um orçamento para um evento.`;
 const INSTAGRAM_URL = 'https://instagram.com/mendes_churrascoecia_oficial';
+const APEZATO_URL = 'https://www.apezatomarketing.com.br';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,26 +16,34 @@ export default function Layout({ children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [location, setLocation] = useLocation();
 
-  const scrollToTop = () => {
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
     if (location === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setLocation('/');
       setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
     }
+    setIsMenuOpen(false);
   };
 
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     if (location !== '/') {
       // If not on home, navigate home first then scroll
       e.preventDefault();
-      setLocation('/' + id);
+      setLocation('/');
+      setTimeout(() => {
+        const element = document.querySelector(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
     }
     setIsMenuOpen(false);
   };
 
   const navLinks = [
-    { name: 'Início', href: '/', isHomeOnly: true },
+    { name: 'Início', href: '/', isHome: true },
     { name: 'Sobre', href: '/sobre' },
     { name: 'Serviços', href: '/#servicos', id: '#servicos' },
     { name: 'Como Funciona', href: '/#como-funciona', id: '#como-funciona' },
@@ -63,12 +72,21 @@ export default function Layout({ children }: LayoutProps) {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                link.href.startsWith('/#') ? (
+                link.isHome ? (
+                  <a 
+                    key={link.name}
+                    href={link.href}
+                    onClick={handleHomeClick}
+                    className="text-sm font-bold hover:text-primary transition-colors cursor-pointer"
+                  >
+                    {link.name}
+                  </a>
+                ) : link.href.startsWith('/#') ? (
                   <a 
                     key={link.name}
                     href={link.href} 
                     onClick={(e) => handleAnchorClick(e, link.id!)}
-                    className="text-sm font-bold hover:text-primary transition-colors"
+                    className="text-sm font-bold hover:text-primary transition-colors cursor-pointer"
                   >
                     {link.name}
                   </a>
@@ -109,12 +127,21 @@ export default function Layout({ children }: LayoutProps) {
             >
               <div className="flex flex-col gap-4 p-4">
                 {navLinks.map((link) => (
-                  link.href.startsWith('/#') ? (
+                  link.isHome ? (
+                    <a 
+                      key={link.name}
+                      href={link.href}
+                      onClick={handleHomeClick}
+                      className="text-sm font-bold hover:text-primary transition-colors cursor-pointer"
+                    >
+                      {link.name}
+                    </a>
+                  ) : link.href.startsWith('/#') ? (
                     <a 
                       key={link.name}
                       href={link.href} 
                       onClick={(e) => handleAnchorClick(e, link.id!)}
-                      className="text-sm font-bold hover:text-primary transition-colors"
+                      className="text-sm font-bold hover:text-primary transition-colors cursor-pointer"
                     >
                       {link.name}
                     </a>
@@ -149,8 +176,8 @@ export default function Layout({ children }: LayoutProps) {
         <div className="container max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             {/* Brand */}
-            <div>
-              <Link href="/" className="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
+            <div className="text-center md:text-left">
+              <Link href="/" className="inline-flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
                 <img 
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310519663520254285/aVZm6JdTQvcxzemDz8Yg75/favicon-mendes-5YnD2HjzGMJhNCnTwNK6Gs.webp"
                   alt="Mendes Churrascaria"
@@ -165,60 +192,60 @@ export default function Layout({ children }: LayoutProps) {
             </div>
 
             {/* Links */}
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="font-black mb-4">Navegação</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">Início</Link></li>
+                <li><a href="/" onClick={handleHomeClick} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Início</a></li>
                 <li><Link href="/sobre" className="text-muted-foreground hover:text-primary transition-colors">Sobre</Link></li>
-                <li><a href="/#servicos" className="text-muted-foreground hover:text-primary transition-colors">Serviços</a></li>
-                <li><a href="/#como-funciona" className="text-muted-foreground hover:text-primary transition-colors">Como Funciona</a></li>
-                <li><a href="/#diferenciais" className="text-muted-foreground hover:text-primary transition-colors">Diferenciais</a></li>
+                <li><a href="/#servicos" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Serviços</a></li>
+                <li><a href="/#como-funciona" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Como Funciona</a></li>
+                <li><a href="/#diferenciais" className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">Diferenciais</a></li>
               </ul>
             </div>
 
             {/* Contato */}
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="font-black mb-4">Contato</h4>
               <ul className="space-y-3 text-sm">
-                <li className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-primary" />
+                <li className="flex items-center justify-center md:justify-start gap-2">
+                  <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                   <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                     (12) 98172-8313
                   </a>
                 </li>
-                <li className="flex items-center gap-2">
-                  <Instagram className="w-4 h-4 text-primary" />
+                <li className="flex items-center justify-center md:justify-start gap-2">
+                  <Instagram className="w-4 h-4 text-primary flex-shrink-0" />
                   <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                     @mendes_churrascoecia_oficial
                   </a>
                 </li>
-                <li className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 text-primary flex-shrink-0 mt-1" />
+                <li className="flex items-center justify-center md:justify-start gap-2">
+                  <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
                   <span className="text-muted-foreground">Vale do Paraíba e Litoral Norte</span>
                 </li>
               </ul>
             </div>
 
             {/* Horário */}
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="font-black mb-4">Atendimento</h4>
               <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-primary" />
+                <li className="flex items-center justify-center md:justify-start gap-2">
+                  <Clock className="w-4 h-4 text-primary flex-shrink-0" />
                   <span className="text-muted-foreground">Segunda a Domingo</span>
                 </li>
-                <li className="text-muted-foreground">Consulte disponibilidade para seu evento</li>
+                <li className="text-muted-foreground text-center md:text-left">Consulte disponibilidade para seu evento</li>
               </ul>
             </div>
           </div>
 
           {/* Divider */}
           <div className="border-t border-border/50 pt-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-sm text-muted-foreground text-center md:text-left">
+            <div className="flex flex-col items-center justify-center gap-4 text-center">
+              <p className="text-sm text-muted-foreground">
                 © 2026 Mendes Churrascaria e Cia. Todos os direitos reservados.
               </p>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-6 justify-center">
                 <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                   <Instagram className="w-5 h-5" />
                 </a>
@@ -226,6 +253,17 @@ export default function Layout({ children }: LayoutProps) {
                   <Phone className="w-5 h-5" />
                 </a>
               </div>
+              <p className="text-sm text-muted-foreground">
+                Desenvolvido por{' '}
+                <a 
+                  href={APEZATO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:text-yellow-500 font-bold transition-colors"
+                >
+                  Apezato Marketing
+                </a>
+              </p>
             </div>
           </div>
         </div>
