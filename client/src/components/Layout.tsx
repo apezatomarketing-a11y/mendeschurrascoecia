@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Phone, Instagram, MapPin, Clock } from 'lucide-react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import React from 'react';
 
 const WHATSAPP_NUMBER = '5512981728313';
@@ -13,10 +13,33 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [location, setLocation] = useLocation();
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (location === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setLocation('/');
+      setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+    }
   };
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (location !== '/') {
+      // If not on home, navigate home first then scroll
+      e.preventDefault();
+      setLocation('/' + id);
+    }
+    setIsMenuOpen(false);
+  };
+
+  const navLinks = [
+    { name: 'Início', href: '/', isHomeOnly: true },
+    { name: 'Sobre', href: '/sobre' },
+    { name: 'Serviços', href: '/#servicos', id: '#servicos' },
+    { name: 'Como Funciona', href: '/#como-funciona', id: '#como-funciona' },
+    { name: 'Diferenciais', href: '/#diferenciais', id: '#diferenciais' },
+  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
@@ -25,23 +48,40 @@ export default function Layout({ children }: LayoutProps) {
         <div className="container max-w-7xl">
           <div className="flex items-center justify-between h-20 px-4 sm:px-6 lg:px-8">
             {/* Logo */}
-            <button onClick={scrollToTop} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <img 
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663520254285/aVZm6JdTQvcxzemDz8Yg75/favicon-mendes-5YnD2HjzGMJhNCnTwNK6Gs.webp"
                 alt="Mendes Churrascaria"
                 className="w-10 h-10"
               />
-              <div className="hidden sm:block">
-                <p className="text-sm font-black text-primary">MENDES</p>
-                <p className="text-xs font-bold text-muted-foreground">Churrascaria</p>
+              <div className="hidden sm:block text-left">
+                <p className="text-sm font-black text-primary leading-none">MENDES</p>
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-tighter">Churrascaria e Cia</p>
               </div>
-            </button>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8">
-              <a href="#servicos" className="text-sm font-bold hover:text-primary transition-colors">Serviços</a>
-              <a href="#como-funciona" className="text-sm font-bold hover:text-primary transition-colors">Como Funciona</a>
-              <a href="#diferenciais" className="text-sm font-bold hover:text-primary transition-colors">Diferenciais</a>
+              {navLinks.map((link) => (
+                link.href.startsWith('/#') ? (
+                  <a 
+                    key={link.name}
+                    href={link.href} 
+                    onClick={(e) => handleAnchorClick(e, link.id!)}
+                    className="text-sm font-bold hover:text-primary transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link 
+                    key={link.name}
+                    href={link.href}
+                    className={`text-sm font-bold hover:text-primary transition-colors ${location === link.href ? 'text-primary' : ''}`}
+                  >
+                    {link.name}
+                  </Link>
+                )
+              ))}
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground font-bold hover:bg-red-800 transition-all">
                 <Phone className="w-4 h-4" />
                 Orçamento
@@ -68,9 +108,27 @@ export default function Layout({ children }: LayoutProps) {
               className="md:hidden border-t border-border/50 bg-card/50 backdrop-blur-sm"
             >
               <div className="flex flex-col gap-4 p-4">
-                <a href="#servicos" className="text-sm font-bold hover:text-primary transition-colors">Serviços</a>
-                <a href="#como-funciona" className="text-sm font-bold hover:text-primary transition-colors">Como Funciona</a>
-                <a href="#diferenciais" className="text-sm font-bold hover:text-primary transition-colors">Diferenciais</a>
+                {navLinks.map((link) => (
+                  link.href.startsWith('/#') ? (
+                    <a 
+                      key={link.name}
+                      href={link.href} 
+                      onClick={(e) => handleAnchorClick(e, link.id!)}
+                      className="text-sm font-bold hover:text-primary transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link 
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`text-sm font-bold hover:text-primary transition-colors ${location === link.href ? 'text-primary' : ''}`}
+                    >
+                      {link.name}
+                    </Link>
+                  )
+                ))}
                 <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground font-bold hover:bg-red-800 transition-all w-full justify-center">
                   <Phone className="w-4 h-4" />
                   Solicitar Orçamento
@@ -92,7 +150,7 @@ export default function Layout({ children }: LayoutProps) {
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             {/* Brand */}
             <div>
-              <button onClick={scrollToTop} className="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
+              <Link href="/" className="flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
                 <img 
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310519663520254285/aVZm6JdTQvcxzemDz8Yg75/favicon-mendes-5YnD2HjzGMJhNCnTwNK6Gs.webp"
                   alt="Mendes Churrascaria"
@@ -102,7 +160,7 @@ export default function Layout({ children }: LayoutProps) {
                   <p className="text-sm font-black text-primary">MENDES</p>
                   <p className="text-xs font-bold text-muted-foreground">Churrascaria e Cia</p>
                 </div>
-              </button>
+              </Link>
               <p className="text-sm text-muted-foreground">Experiências inesquecíveis em cada evento. Premium BBQ desde 1995.</p>
             </div>
 
@@ -110,10 +168,11 @@ export default function Layout({ children }: LayoutProps) {
             <div>
               <h4 className="font-black mb-4">Navegação</h4>
               <ul className="space-y-2 text-sm">
-                <li><a href="#servicos" className="text-muted-foreground hover:text-primary transition-colors">Serviços</a></li>
-                <li><a href="#como-funciona" className="text-muted-foreground hover:text-primary transition-colors">Como Funciona</a></li>
-                <li><a href="#diferenciais" className="text-muted-foreground hover:text-primary transition-colors">Diferenciais</a></li>
-                <li><a href="#regioes" className="text-muted-foreground hover:text-primary transition-colors">Regiões</a></li>
+                <li><Link href="/" className="text-muted-foreground hover:text-primary transition-colors">Início</Link></li>
+                <li><Link href="/sobre" className="text-muted-foreground hover:text-primary transition-colors">Sobre</Link></li>
+                <li><a href="/#servicos" className="text-muted-foreground hover:text-primary transition-colors">Serviços</a></li>
+                <li><a href="/#como-funciona" className="text-muted-foreground hover:text-primary transition-colors">Como Funciona</a></li>
+                <li><a href="/#diferenciais" className="text-muted-foreground hover:text-primary transition-colors">Diferenciais</a></li>
               </ul>
             </div>
 

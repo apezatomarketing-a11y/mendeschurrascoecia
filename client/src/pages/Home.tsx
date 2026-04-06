@@ -214,7 +214,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 sm:py-28 lg:py-32 bg-background relative">
+      <section id="servicos" className="py-20 sm:py-28 lg:py-32 bg-background relative">
         <div className="container max-w-7xl">
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <motion.h2 
@@ -261,7 +261,7 @@ export default function Home() {
       </section>
 
       {/* Como Funciona Section */}
-      <section className="py-20 sm:py-28 lg:py-32 bg-card/30 relative">
+      <section id="como-funciona" className="py-20 sm:py-28 lg:py-32 bg-card/30 relative">
         <div className="container max-w-7xl">
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <motion.h2 
@@ -343,7 +343,7 @@ export default function Home() {
       </section>
 
       {/* Diferenciais Section */}
-      <section className="py-20 sm:py-28 lg:py-32 bg-background relative overflow-hidden">
+      <section id="diferenciais" className="py-20 sm:py-28 lg:py-32 bg-background relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <Flame className="absolute top-10 left-10 w-32 h-32 text-primary" />
           <Flame className="absolute bottom-20 right-10 w-40 h-40 text-primary" />
@@ -420,7 +420,7 @@ export default function Home() {
       </section>
 
       {/* Regiões Atendidas */}
-      <section className="py-20 sm:py-28 lg:py-32 bg-card/30 relative">
+      <section id="regioes" className="py-20 sm:py-28 lg:py-32 bg-card/30 relative">
         <div className="container max-w-7xl">
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <motion.h2 
