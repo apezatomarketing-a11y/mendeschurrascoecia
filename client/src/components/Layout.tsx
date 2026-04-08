@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { Phone, Instagram, MapPin, Clock } from 'lucide-react';
+import { Phone, Instagram, MapPin, Clock, Sun, Moon } from 'lucide-react';
 import { Link, useLocation } from 'wouter';
 import React from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const WHATSAPP_NUMBER = '5512981728313';
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá! Gostaria de solicitar um orçamento para um evento.`;
@@ -15,6 +16,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [location, setLocation] = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -59,13 +61,13 @@ export default function Layout({ children }: LayoutProps) {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <img 
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663520254285/aVZm6JdTQvcxzemDz8Yg75/favicon-mendes-5YnD2HjzGMJhNCnTwNK6Gs.webp"
-                alt="Mendes Churrascaria"
+                src="/favicon-new.png"
+                alt="Mendes Churrasco"
                 className="w-10 h-10"
               />
               <div className="hidden sm:block text-left">
                 <p className="text-sm font-black text-primary leading-none">MENDES</p>
-                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-tighter">Churrascaria e Cia</p>
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-tighter">Churrasco e Cia</p>
               </div>
             </Link>
 
@@ -100,21 +102,45 @@ export default function Layout({ children }: LayoutProps) {
                   </Link>
                 )
               ))}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full hover:bg-primary/10 transition-colors"
+                title={`Mudar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-5 h-5 text-yellow-500" />
+                ) : (
+                  <Moon className="w-5 h-5 text-slate-700" />
+                )}
+              </button>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground font-bold hover:bg-red-800 transition-all">
                 <Phone className="w-4 h-4" />
                 Orçamento
               </a>
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden flex flex-col gap-1.5 p-2"
-            >
-              <div className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <div className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? 'opacity-0' : ''}`} />
-              <div className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-            </button>
+            {/* Mobile Menu Button and Theme Toggle */}
+            <div className="md:hidden flex items-center gap-2">
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full hover:bg-primary/10 transition-colors"
+                title={`Mudar para tema ${theme === 'dark' ? 'claro' : 'escuro'}`}
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-5 h-5 text-yellow-500" />
+                ) : (
+                  <Moon className="w-5 h-5 text-slate-700" />
+                )}
+              </button>
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="flex flex-col gap-1.5 p-2"
+              >
+                <div className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <div className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? 'opacity-0' : ''}`} />
+                <div className={`w-6 h-0.5 bg-foreground transition-all ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu */}
@@ -179,13 +205,13 @@ export default function Layout({ children }: LayoutProps) {
             <div className="text-center md:text-left">
               <Link href="/" className="inline-flex items-center gap-3 mb-6 hover:opacity-80 transition-opacity">
                 <img 
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663520254285/aVZm6JdTQvcxzemDz8Yg75/favicon-mendes-5YnD2HjzGMJhNCnTwNK6Gs.webp"
-                  alt="Mendes Churrascaria"
+                  src="/favicon-new.png"
+                  alt="Mendes Churrasco"
                   className="w-12 h-12"
                 />
                 <div>
                   <p className="text-sm font-black text-primary">MENDES</p>
-                  <p className="text-xs font-bold text-muted-foreground">Churrascaria e Cia</p>
+                  <p className="text-xs font-bold text-muted-foreground">Churrasco e Cia</p>
                 </div>
               </Link>
               <p className="text-sm text-muted-foreground">Experiências inesquecíveis em cada evento. Premium BBQ desde 1995.</p>
@@ -243,7 +269,7 @@ export default function Layout({ children }: LayoutProps) {
           <div className="border-t border-border/50 pt-8">
             <div className="flex flex-col items-center justify-center gap-4 text-center">
               <p className="text-sm text-muted-foreground">
-                © 2026 Mendes Churrascaria e Cia. Todos os direitos reservados.
+                © 2026 Mendes Churrasco e Cia. Todos os direitos reservados.
               </p>
               <div className="flex items-center gap-6 justify-center">
                 <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">

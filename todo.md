@@ -1,4 +1,4 @@
-# Mendes Churrascaria e Cia - Project TODO
+# Mendes Churrasco e Cia - Project TODO
 
 ## Visual Identity
 - [x] Logotipo principal criado

@@ -14,11 +14,11 @@ import {
 } from "@/components/ui/carousel";
 
 const WHATSAPP_NUMBER = '5512981728313';
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre a Mendes Churrascaria.`;
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre a Mendes Churrasco.`;
 const INSTAGRAM_URL = 'https://instagram.com/mendes_churrascoecia_oficial';
 
 const galleryImages = [
-  { src: '/assets/about/about_main.jpg', alt: 'Mendes Churrascaria - Sobre' },
+  { src: '/assets/about/about_main.jpg', alt: 'Mendes Churrasco - Sobre' },
   { src: '/assets/about/differentials.jpg', alt: 'Nossos Diferenciais' },
   { src: '/assets/about/service1.jpg', alt: 'Serviço de Churrasco 1' },
   { src: '/assets/about/service2.jpg', alt: 'Serviço de Churrasco 2' },
@@ -84,7 +84,7 @@ export default function About() {
                 Nossa História
               </motion.div>
               <motion.h1 variants={fadeInUp} className="text-4xl sm:text-6xl font-black mb-8">
-                Sobre a <span className="text-primary">Mendes Churrascaria</span>
+                Sobre a <span className="text-primary">Mendes Churrasco</span>
               </motion.h1>
               <motion.p variants={fadeInUp} className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 Unindo disciplina militar, paixão pela gastronomia e o prazer de servir bem para criar momentos inesquecíveis.

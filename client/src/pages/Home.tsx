@@ -125,7 +125,7 @@ export default function Home() {
               </motion.div>
               
               <motion.h1 variants={fadeInUp} className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-6 sm:mb-8">
-                Mendes <span className="bg-gradient-to-r from-primary via-yellow-500 to-yellow-600 bg-clip-text text-transparent">Churrascaria</span>
+                Mendes <span className="bg-gradient-to-r from-primary via-yellow-500 to-yellow-600 bg-clip-text text-transparent">Churrasco</span>
               </motion.h1>
               
               <motion.p variants={fadeInUp} className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
@@ -186,8 +186,8 @@ export default function Home() {
               <div className="relative z-10">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
                 <img 
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663520254285/aVZm6JdTQvcxzemDz8Yg75/logo-mendes-churrascaria-Df5VxaPzM6xE3yMvAXzqAd.webp" 
-                  alt="Mendes Churrascaria Logo" 
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663520254285/aVZm6JdTQvcxzemDz8Yg75/logo-mendes-churrasco-Df5VxaPzM6xE3yMvAXzqAd.webp" 
+                  alt="Mendes Churrasco Logo" 
                   className="relative z-10 w-full max-w-lg mx-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)]"
                 />
               </div>

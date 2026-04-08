@@ -43,7 +43,7 @@
 }
 
 :root {
-  /* Mendes Churrascaria - Premium BBQ Color Palette */
+  /* Mendes Churrasco - Premium BBQ Color Palette - Dark Theme (Default) */
   --primary: oklch(0.35 0.25 25);        /* Dark Red (#8B0000) */
   --primary-foreground: oklch(0.98 0.001 65); /* Cream */
   --sidebar-primary: oklch(0.35 0.25 25);
@@ -54,64 +54,100 @@
   --chart-4: oklch(0.35 0.25 25);
   --chart-5: oklch(0.65 0.2 45);
   --radius: 0.65rem;
-  --background: oklch(0.02 0 0);         /* Deep Black */
+  --background: oklch(0.12 0.01 0);      /* Dark Gray (#1a1a1a) */
   --foreground: oklch(0.98 0.001 65);    /* Cream */
-  --card: oklch(0.08 0.01 0);            /* Dark Charcoal */
+  --card: oklch(0.18 0.01 0);            /* Medium Dark Gray (#2a2a2a) */
   --card-foreground: oklch(0.98 0.001 65); /* Cream */
-  --popover: oklch(0.08 0.01 0);
+  --popover: oklch(0.18 0.01 0);
   --popover-foreground: oklch(0.98 0.001 65);
   --secondary: oklch(0.65 0.2 45);       /* Gold */
   --secondary-foreground: oklch(0.02 0 0); /* Black */
-  --muted: oklch(0.25 0.01 0);           /* Medium Gray */
-  --muted-foreground: oklch(0.85 0.001 65); /* Light Cream */
+  --muted: oklch(0.35 0.01 0);           /* Medium Gray */
+  --muted-foreground: oklch(0.75 0.001 65); /* Light Gray */
   --accent: oklch(0.35 0.25 25);         /* Dark Red */
   --accent-foreground: oklch(0.98 0.001 65); /* Cream */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.2 0.01 0);           /* Dark Border */
-  --input: oklch(0.15 0.01 0);
+  --border: oklch(0.25 0.01 0);          /* Medium Dark Border */
+  --input: oklch(0.2 0.01 0);
   --ring: oklch(0.65 0.2 45);            /* Gold Ring */
-  --sidebar: oklch(0.08 0.01 0);
+  --sidebar: oklch(0.18 0.01 0);
   --sidebar-foreground: oklch(0.98 0.001 65);
   --sidebar-accent: oklch(0.35 0.25 25);
   --sidebar-accent-foreground: oklch(0.98 0.001 65);
-  --sidebar-border: oklch(0.2 0.01 0);
+  --sidebar-border: oklch(0.25 0.01 0);
   --sidebar-ring: oklch(0.65 0.2 45);
 }
 
 .dark {
-  /* Dark theme (primary for Mendes Churrascaria) */
+  /* Dark theme (primary for Mendes Churrasco) */
   --primary: oklch(0.35 0.25 25);        /* Dark Red */
   --primary-foreground: oklch(0.98 0.001 65); /* Cream */
   --sidebar-primary: oklch(0.35 0.25 25);
   --sidebar-primary-foreground: oklch(0.98 0.001 65);
-  --background: oklch(0.02 0 0);         /* Deep Black */
+  --background: oklch(0.12 0.01 0);      /* Dark Gray */
   --foreground: oklch(0.98 0.001 65);    /* Cream */
-  --card: oklch(0.08 0.01 0);            /* Dark Charcoal */
+  --card: oklch(0.18 0.01 0);            /* Medium Dark Gray */
   --card-foreground: oklch(0.98 0.001 65); /* Cream */
-  --popover: oklch(0.08 0.01 0);
+  --popover: oklch(0.18 0.01 0);
   --popover-foreground: oklch(0.98 0.001 65);
   --secondary: oklch(0.65 0.2 45);       /* Gold */
   --secondary-foreground: oklch(0.02 0 0); /* Black */
-  --muted: oklch(0.25 0.01 0);           /* Medium Gray */
-  --muted-foreground: oklch(0.85 0.001 65); /* Light Cream */
+  --muted: oklch(0.35 0.01 0);           /* Medium Gray */
+  --muted-foreground: oklch(0.75 0.001 65); /* Light Gray */
   --accent: oklch(0.35 0.25 25);         /* Dark Red */
   --accent-foreground: oklch(0.98 0.001 65); /* Cream */
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
+  --border: oklch(0.25 0.01 0 / 50%);
+  --input: oklch(0.25 0.01 0 / 60%);
   --ring: oklch(0.65 0.2 45);            /* Gold Ring */
   --chart-1: oklch(0.65 0.2 45);
   --chart-2: oklch(0.35 0.25 25);
   --chart-3: oklch(0.15 0.01 0);
   --chart-4: oklch(0.35 0.25 25);
   --chart-5: oklch(0.65 0.2 45);
-  --sidebar: oklch(0.08 0.01 0);
+  --sidebar: oklch(0.18 0.01 0);
   --sidebar-foreground: oklch(0.98 0.001 65);
   --sidebar-accent: oklch(0.35 0.25 25);
   --sidebar-accent-foreground: oklch(0.98 0.001 65);
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-border: oklch(0.25 0.01 0 / 50%);
+  --sidebar-ring: oklch(0.65 0.2 45);
+}
+
+.light {
+  /* Light theme */
+  --primary: oklch(0.35 0.25 25);        /* Dark Red */
+  --primary-foreground: oklch(0.98 0.001 65); /* Cream */
+  --sidebar-primary: oklch(0.35 0.25 25);
+  --sidebar-primary-foreground: oklch(0.98 0.001 65);
+  --background: oklch(0.97 0.001 65);    /* Off White */
+  --foreground: oklch(0.15 0.01 0);      /* Dark Gray/Black */
+  --card: oklch(0.95 0.001 65);          /* Light Gray */
+  --card-foreground: oklch(0.15 0.01 0); /* Dark Gray/Black */
+  --popover: oklch(0.95 0.001 65);
+  --popover-foreground: oklch(0.15 0.01 0);
+  --secondary: oklch(0.65 0.2 45);       /* Gold */
+  --secondary-foreground: oklch(0.35 0.25 25); /* Dark Red */
+  --muted: oklch(0.7 0.01 0);            /* Medium Light Gray */
+  --muted-foreground: oklch(0.4 0.01 0); /* Dark Gray */
+  --accent: oklch(0.35 0.25 25);         /* Dark Red */
+  --accent-foreground: oklch(0.98 0.001 65); /* Cream */
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.85 0.01 0);          /* Light Border */
+  --input: oklch(0.9 0.01 0);
+  --ring: oklch(0.65 0.2 45);            /* Gold Ring */
+  --chart-1: oklch(0.65 0.2 45);
+  --chart-2: oklch(0.35 0.25 25);
+  --chart-3: oklch(0.8 0.01 0);
+  --chart-4: oklch(0.35 0.25 25);
+  --chart-5: oklch(0.65 0.2 45);
+  --sidebar: oklch(0.95 0.001 65);
+  --sidebar-foreground: oklch(0.15 0.01 0);
+  --sidebar-accent: oklch(0.35 0.25 25);
+  --sidebar-accent-foreground: oklch(0.98 0.001 65);
+  --sidebar-border: oklch(0.85 0.01 0);
   --sidebar-ring: oklch(0.65 0.2 45);
 }
 
@@ -178,7 +214,7 @@
   }
 }
 @layer components {
-  /* Mendes Churrascaria Custom Styles */
+  /* Mendes Churrasco Custom Styles */
   
   /* Gold accent text */
   .text-gold {
