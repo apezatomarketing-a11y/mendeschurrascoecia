@@ -186,8 +186,8 @@ export default function Home() {
               <div className="relative z-10">
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
                 <img 
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663520254285/aVZm6JdTQvcxzemDz8Yg75/logo-mendes-churrasco-Df5VxaPzM6xE3yMvAXzqAd.webp" 
-                  alt="Mendes Churrasco Logo" 
+                  src="/assets/logo-hero.png" 
+                  alt="Mendes Churrasco e Cia Logo" 
                   className="relative z-10 w-full max-w-lg mx-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)]"
                 />
               </div>

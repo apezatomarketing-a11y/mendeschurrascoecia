@@ -66,8 +66,8 @@ export default function Layout({ children }: LayoutProps) {
                 className="w-10 h-10"
               />
               <div className="hidden sm:block text-left">
-                <p className="text-sm font-black text-primary leading-none">MENDES</p>
-                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-tighter">Churrasco e Cia</p>
+                <p className="text-sm font-black text-primary leading-none">BUFFET DE</p>
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-tighter">Churrasco</p>
               </div>
             </Link>
 
