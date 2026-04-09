@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -113,6 +114,7 @@
   --sidebar-accent-foreground: oklch(0.98 0.001 65);
   --sidebar-border: oklch(0.25 0.01 0 / 50%);
   --sidebar-ring: oklch(0.65 0.2 45);
+  color-scheme: dark;
 }
 
 .light {
@@ -123,32 +125,33 @@
   --sidebar-primary-foreground: oklch(0.98 0.001 65);
   --background: oklch(0.97 0.001 65);    /* Off White */
   --foreground: oklch(0.15 0.01 0);      /* Dark Gray/Black */
-  --card: oklch(0.95 0.001 65);          /* Light Gray */
+  --card: oklch(0.93 0.001 65);          /* Light Gray */
   --card-foreground: oklch(0.15 0.01 0); /* Dark Gray/Black */
-  --popover: oklch(0.95 0.001 65);
+  --popover: oklch(0.93 0.001 65);
   --popover-foreground: oklch(0.15 0.01 0);
   --secondary: oklch(0.65 0.2 45);       /* Gold */
   --secondary-foreground: oklch(0.35 0.25 25); /* Dark Red */
-  --muted: oklch(0.7 0.01 0);            /* Medium Light Gray */
-  --muted-foreground: oklch(0.4 0.01 0); /* Dark Gray */
+  --muted: oklch(0.65 0.01 0);           /* Medium Light Gray */
+  --muted-foreground: oklch(0.35 0.01 0); /* Dark Gray */
   --accent: oklch(0.35 0.25 25);         /* Dark Red */
   --accent-foreground: oklch(0.98 0.001 65); /* Cream */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.85 0.01 0);          /* Light Border */
-  --input: oklch(0.9 0.01 0);
+  --border: oklch(0.8 0.01 0);           /* Light Border */
+  --input: oklch(0.88 0.01 0);
   --ring: oklch(0.65 0.2 45);            /* Gold Ring */
   --chart-1: oklch(0.65 0.2 45);
   --chart-2: oklch(0.35 0.25 25);
-  --chart-3: oklch(0.8 0.01 0);
+  --chart-3: oklch(0.3 0.01 0);
   --chart-4: oklch(0.35 0.25 25);
   --chart-5: oklch(0.65 0.2 45);
-  --sidebar: oklch(0.95 0.001 65);
+  --sidebar: oklch(0.93 0.001 65);
   --sidebar-foreground: oklch(0.15 0.01 0);
   --sidebar-accent: oklch(0.35 0.25 25);
   --sidebar-accent-foreground: oklch(0.98 0.001 65);
-  --sidebar-border: oklch(0.85 0.01 0);
+  --sidebar-border: oklch(0.8 0.01 0);
   --sidebar-ring: oklch(0.65 0.2 45);
+  color-scheme: light;
 }
 
 @layer base {
@@ -156,7 +159,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -169,27 +172,22 @@
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
   }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground transition-colors duration-300;
+  }
+  
+  p, span, li {
+    @apply text-foreground transition-colors duration-300;
+  }
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -200,38 +198,35 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
   }
 }
+
 @layer components {
   /* Mendes Churrasco Custom Styles */
   
-  /* Gold accent text */
   .text-gold {
     @apply text-yellow-500;
   }
   
-  /* Premium button with dark red */
   .btn-premium {
     @apply bg-primary text-primary-foreground hover:bg-red-800 transition-all duration-300 shadow-lg hover:shadow-xl;
   }
   
-  /* Section divider with gold */
   .section-divider {
     @apply border-t-2 border-yellow-500 my-12;
   }
   
-  /* Smooth fade in animation */
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -247,12 +242,10 @@
     animation: fadeInUp 0.8s ease-out;
   }
   
-  /* Premium card hover effect */
   .card-premium {
     @apply bg-card border border-border/50 rounded-xl p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg;
   }
   
-  /* Ripple pulse animation for buttons */
   @keyframes ripple-pulse {
     0% {
       box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.7);
@@ -267,5 +260,28 @@
   
   .animate-ripple-pulse {
     animation: ripple-pulse 2s infinite;
+  }
+  
+  /* Theme-aware transitions for all interactive elements */
+  button, a, input, select, textarea {
+    @apply transition-all duration-300;
+  }
+  
+  /* Ensure proper contrast in light mode */
+  .light button:not(.bg-primary):not(.bg-secondary) {
+    @apply bg-card text-foreground border border-border hover:bg-muted;
+  }
+  
+  .light a {
+    @apply text-primary hover:text-primary/80;
+  }
+  
+  /* Dark mode button styles */
+  .dark button:not(.bg-primary):not(.bg-secondary) {
+    @apply bg-card text-foreground border border-border/50 hover:bg-muted;
+  }
+  
+  .dark a {
+    @apply text-primary hover:text-yellow-400;
   }
 }
